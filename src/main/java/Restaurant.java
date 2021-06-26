@@ -51,6 +51,12 @@ public class Restaurant {
         menu.remove(itemToBeRemoved);
     }
 
+    public int getTotalPrice(List<String> items){
+        return menu.stream()
+          .filter(item -> items.contains(item.getName()))
+          .reduce(0, (subtotal, item) -> subtotal + item.getPrice(), Integer::sum);
+    }
+
     public void displayDetails(){
         System.out.println("Restaurant:"+ name + "\n"
           +"Location:"+ location + "\n"
